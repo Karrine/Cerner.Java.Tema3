@@ -4,19 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.IFruct;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public class AppWindow {
 
-	List<Class> fructe = new ArrayList<Class>();
 	
 	private JFrame frame;
 
@@ -29,8 +28,13 @@ public class AppWindow {
 			public void run() {
 				try {
 					AppWindow window = new AppWindow();	
+					JLabel lb = new JLabel();
+					lb.setSize(new Dimension(100, 30));
+					lb.setText("Check taste");
+					window.frame.getContentPane().add(lb);
+					
 					for(Class<? extends IFruct> c : classes) {
-						window.frame.getContentPane().add(new JButton(c.getSimpleName().toString()));
+						window.frame.getContentPane().add(new FruitButton(c, lb));
 					}
 					window.frame.setVisible(true);
 				} catch (Exception e) {
